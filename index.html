@@ -17,7 +17,7 @@
       <form>
         <div class="grid-container">
           <div class="grid-x grid-padding-x">
-            <input type="search" placeholder="Search Games by Name" class="searchQuery">
+            <input type="search" placeholder="Search Game by Name" class="searchQuery">
           </div>
         </div>
       </form>
@@ -26,13 +26,30 @@
     <main>
       <div class="grid-container">
         <div class="grid-x grid-padding-x">
-          <div class="cell large-2 medium-4 small-6">
+
+          <div class="cell large-2 medium-4 small-6">                      <!--hardcode genre-->
             <div class="card">
+              <img src="./assets/images/hand-984170__480.webp" alt="Scary Picture to emphasize Horror">
+              <div class="card-section">
+                  <h5>Horror</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-ghost fa-lg"></i></p>
+              </div>
             </div>
           </div>
 
-          <div class="cell large-2 medium-4 small-6">
+          <div class="cell large-2 medium-4 small-6">                   <!--hardcode game-->
             <div class="card">
+              <img src="./assets/images/bungie_net_metadata_beyondlight_1920x1080.jpg" alt="Destiny 2 Game cover">
+              <div  class="card-section">
+                <div class="system-icon-styles">
+                  <i class="fab fa-windows"></i>
+                  <i class="fab fa-xbox"></i>
+                  <i class="fab fa-playstation"></i>
+                  <h5>Destiny 2</h5>
+
+                </div>
+
+              </div>
             </div>
           </div>
 
@@ -87,6 +104,34 @@
           </div>
         </div>
       </div>
+
+
+
+      <div class="game-page">
+        <header class="game-search">
+          <form>
+            <div class="grid-container">
+              <div class="grid-x grid-padding-x">
+              <input type="search" placeholder="Search Game by Name" class="searchQuery">
+              </div>
+            </div>
+          </form>
+        </header>
+
+        <div class="game-background"></div>
+        <div class="game-content">
+            <div class="row">
+              <div class="columns medium-8">
+                <h1>Monster Hunter World</h1>
+              </div>  
+            </div>
+              <div class="game-video">
+              <iframe src="https://www.giantbomb.com/shows/monster-hunter-world-iceborne/2970-19591" 
+              style="border: 0;" allowfullscreen="" loading="lazy"></iframe>
+              </div>              
+            </div>
+        </div>
+      </div>      <!-- hardcoded game page -->
     </main>
 </body>
 </html>
