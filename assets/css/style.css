@@ -2,10 +2,59 @@ header {
   margin: 15vh 5vh 0 5vh;
 }
 
+.game-search {
+  padding-top: 2vh;
+  margin: 15vh 5vh 0 5vh;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
 .searchQuery {
   text-align: center;
 }
 
 .card {
   margin-top: 5vh;
+}
+
+.card-section {
+  text-align: center;
+}
+
+.system-icon-styles {
+  text-align: left;
+  font-size: 18px;
+}
+
+.genre-icon-styles {
+  font-size: 18px;
+}
+
+body {
+  background-color: rgb(65, 65, 65);
+}
+
+.game-page {
+  text-align: center;
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+}
+
+.game-background {
+  background-image: url(../images/Monster-Hunter-World-cover.jpg);
+  background-size: cover;
+  background-position: 80%;
+  height: 800px;
+  display: flex;
+}
+
+.game-content h1 {
+  font-size: 90px;
+  font-family: sans-serif;
+}
+
+
+iframe {
+  height: 400px;
+  width: 400px;
 }
