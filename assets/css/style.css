@@ -58,3 +58,16 @@ iframe {
   height: 400px;
   width: 400px;
 }
+
+#back-Btn {
+  text-decoration: none;
+  padding-top: 20px;
+}
+#back-Btn a {
+  color: black;
+  text-decoration: underline;
+}
+
+#favorites-Btn {
+  padding-top: 20px;
+}
