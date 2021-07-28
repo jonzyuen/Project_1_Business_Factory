@@ -5,7 +5,8 @@ let createDiv = document.createElement('div');
 let gameCard = document.getElementById('game-grid-container');
 
 
-function getGenre() { document.querySelector('#genre-container').addEventListener('click', function(event) {
+let getGenre = function() { 
+    document.querySelector('#genre-container').addEventListener('click', function(event) {
         console.log(event.target.classList);
         event.preventDefault();
 
@@ -20,21 +21,9 @@ function getGenre() { document.querySelector('#genre-container').addEventListene
     });
 };
 
-function makeCell() {
-    let divCell = document.createElement('div');
-    divCell.setAttribute('class', 'cell large-2 medium-4 small-6');
-
-};
-function makeCard() {
-    let divCard = document.createElement('div');
-    divCard.setAttribute('class', 'card');
-};
-function makeCardSection() {
-    let cardSection = document.createElement('div');
-    cardSection.setAttribute('class', 'card-section')
-};
-
 function gameCardEl () {
+
+    //POSSIBLE VAR + RETURN THAT READ EASE
     let divCell = document.createElement('div');
     divCell.setAttribute('class', 'cell large-2 medium-4 small-6');
     gameCard.appendChild(divCell);
@@ -46,23 +35,31 @@ function gameCardEl () {
     let cardSection = document.createElement('div');
     cardSection.setAttribute('class', 'card-section');
     divCard.appendChild(cardSection);
+
+    return divCard;
 }
+// start of for loop to make divs for length of results/genre
+// for (let i=0; i<data.results; i++) {}
 
 function genericFunction() {
     fetch(
-        'https://api.rawg.io/api/games?key=c7ec26c3e2bb4ca79a5a70710956f2f8&genres=action'
+        // `https://api.rawg.io/api/games?key=c7ec26c3e2bb4ca79a5a70710956f2f8&genres=action`
     ).then(function(response) {
         return response.json();
     })
     .then(function(response) {
         console.log(response.results[0]);
-        gameCardEl();
+        let divCard = gameCardEl();
         let gameCover = document.createElement('img')
         gameCover.setAttribute('src', response.results[0].background_image);
-        gameCardEl().appendChild(gameCover);
+        let gameTitle = document.createElement('h5');
+        gameTitle.textContent = response.results[0].name;
+        divCard.prepend(gameCover);
+        divCard.appendChild(gameTitle)
+    });
 
-    })
-}
+    
+};
 
 const getAllGenres = () => {
     return fetch(`https://api.rawg.io/api/genres?key=c7ec26c3e2bb4ca79a5a70710956f2f8`)
