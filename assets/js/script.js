@@ -64,7 +64,6 @@ const getAllGenres = () => {
         .then(response => response.json())
         .then(data => data.results);
     }
-console.log(getAllGenres())
 
 const getGamesByGenre = (genre) => {
     return fetch(`https://api.rawg.io/api/games?key=c7ec26c3e2bb4ca79a5a70710956f2f8&genres=${genre}`)
@@ -95,7 +94,8 @@ const getVideoByGuid = (videoUrl) => {
 
 
 // Pass game data (one of the results) and return card
-const createGameCard = (gameData) => {
+const createGameCard = (gameData, container) => {
+    console.log(gameData)
     const videoPlayer = document.getElementById('video-player')
     const outerDiv = document.createElement('div')
     outerDiv.classList.add('cell', 'large-2', 'medium-4', 'small-6')
@@ -116,7 +116,7 @@ const createGameCard = (gameData) => {
     const cardDiv = document.createElement('div')
     cardDiv.classList.add('card')
     const gameImg = document.createElement('img')
-    gameImg.src = gameData.image.icon_url
+    gameImg.src = gameData.image?.icon_url || gameData.image_background
     gameImg.alt = "No Icon"
 
     const cardSection = document.createElement('div')
@@ -129,8 +129,7 @@ const createGameCard = (gameData) => {
     cardDiv.appendChild(cardSection)
     cardSection.appendChild(gameName)
 
-    const headerContainer = document.querySelector('#results-container')
-    headerContainer.appendChild(outerDiv)
+    container.appendChild(outerDiv)
 }   
 
 
@@ -157,8 +156,8 @@ getAllGenres().then((genres) => {
 
 
 
-getGenre();
-genericFunction();
+// getGenre();
+// genericFunction();
 
 
 
@@ -174,9 +173,15 @@ searchForm.addEventListener('submit', function(e) {
     let gameName = document.getElementById('text-box').value
     getGameDataByGameName(gameName) 
         .then((results) => {
-            console.log(results)
         for (let i = 0; i < results.length; i++ ) {
-            createGameCard(results[i])
+            createGameCard(results[i], document.querySelector('#results-container'))
         }
     })
 });
+
+getAllGenres() 
+    .then((results) => {
+        for (let i = 0; i < results.length; i++ ) {
+        createGameCard(results[i], document.getElementById('genre-container'))
+        }
+    })
