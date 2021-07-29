@@ -10,21 +10,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
-    
+    <script src="./assets/js/script.js" defer></script>
     <title>Document</title>
 </head>
 
 <body>
-    <header class="game-search">
-        <form>
-            <div class="grid-container">
-                <div class="grid-x grid-padding-x">
-                    <input type="search" placeholder="Search Game by Name" class="searchQuery">
-                </div>
-            </div>
-        </form>
+    <header>
+      Our App Name
     </header>
-
+    <div id="header-container" class="grid-container">
+      <form id="search-form">
+        <input id="text-box" type="search" placeholder="Search Game by Name" class="searchQuery">
+      </form>
+      <div id="results-container" class="grid-x grid-padding-x">
+      </div>
+      <div class="game-video hide">
+        <button id="back-btn">Go Back</button>
+        <iframe id="video-player" src="" frameborder="0"></iframe>
+      </div>
+    </div>
+    
     <main>
         <div class="grid-container" id="genre-container">
             <div class="grid-x grid-padding-x">
