@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/script.js"></script>
+    <title>Games by Genre</title>
+</head>
+
+<body>
+    <header class="game-search">
+      <form>
+        <div class="grid-container">
+          <div class="grid-x grid-padding-x">
+            <input type="search" placeholder="Search Game by Name" class="searchQuery">
+          </div>
+        </div>
+      </form>
+    </header>
+
+    <main>
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/action.jpg" alt="person flying from explosion">
+              <div class="card-section">
+                  <h5>Action</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-exclamation-triangle"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/platformer.jpg" alt="8-bit Mario">
+              <div class="card-section">
+                  <h5>Platformer</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-frog"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/rpg.jpg" alt="person looks beyond from a cliff">
+              <div class="card-section">
+                  <h5>RPG</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-hiking"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/shooter.jpg" alt="a sniper rifle">
+              <div class="card-section">
+                  <h5>Shooter</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-crosshairs"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/simulation.jpg" alt="a tractor combine harvesting crops">
+              <div class="card-section">
+                  <h5>Simulation</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-tractor"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/puzzle.jpg" alt="a puzzle with lines">
+              <div class="card-section">
+                  <h5>Puzzle</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-puzzle-piece"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/arcade.jpg" alt="arcade cabinets">
+              <div class="card-section">
+                  <h5>Arcade</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-gamepad"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/racing.jpg" alt="cars racing">
+              <div class="card-section">
+                  <h5>Racing</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-car"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/mmo.jpg" alt="a crowded city in a game">
+              <div class="card-section">
+                  <h5>MMO</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-users"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/sports.png" alt="two curlers curling">
+              <div class="card-section">
+                  <h5>Sports</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-running"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/fighting.jpg" alt="two people fighting">
+              <div class="card-section">
+                  <h5>Fighting</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-user-injured"></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="./assets/images/indie.png" alt="a pixelated shop in a town">
+              <div class="card-section">
+                  <h5>Indie</h5>
+                  <p class="genre-icon-styles"><i class="fas fa-smile"></i></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    
+
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <!-- <div class="cell large-2 medium-4 small-6">                   hardcode game
+            <div class="card">
+              <img src="./assets/images/bungie_net_metadata_beyondlight_1920x1080.jpg" alt="Destiny 2 Game cover">
+              <div  class="card-section">
+                <div class="system-icon-styles">
+                  <i class="fab fa-windows"></i>
+                  <i class="fab fa-xbox"></i>
+                  <i class="fab fa-playstation"></i>
+                  <h5>Destiny 2</h5>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell large-2 medium-4 small-6">
+            <a class="card">
+              <img src="">
+              <div class="card-section">
+                  <h5></h5>
+                  <p class="genre-icon-styles"><i class=""></i></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-page">
+        <header class="game-serch">
+          <form>
+            <div class="grid-container">
+              <div class="grid-x grid-padding-x">
+              <input type="search" placeholder="Search Game by Name" class="searchQuery">
+              </div>
+            </div>
+          </form>
+        </header>
+
+        <div class="game-background"></div>
+        <div class="game-content grid-container">
+            <div class="grid-x grid-padding-x">
+              <div class="cell large-2" id="back-Btn">
+                <button>
+                  <a href="#" class="hollow button secondary">
+                  <i class="fas fa-arrow-left"></i>&nbsp;Back</a>
+                </button>
+              </div>
+              <div class="cell large-8">
+                <h1></h1>
+              </div>
+              <div class="cell large-2" id="favorites-Btn">
+                <button>
+                  <a href="#" class="hollow button secondary">
+                    <i class="far fa-heart"></i>&nbsp;Add to Favorites</a>
+                </button>
+              </div>
+            </div>
+              <div class="game-video">
+              <iframe src="" 
+              style="border: 0;" allowfullscreen="" loading="lazy"></iframe>
+              </div>              
+            </div>
+        </div>
+      </div>      <!-- hardcoded game page -->
+    </main>
+    <footer>
+      Some icons from <a href="https://icons8.com">icons8.com</a>
+    </footer>
+</body>
+</html>
