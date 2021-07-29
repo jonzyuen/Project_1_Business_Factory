@@ -57,8 +57,6 @@ function genericFunction() {
         divCard.prepend(gameCover);
         divCard.appendChild(gameTitle)
     });
-
-    
 };
 
 const getAllGenres = () => {
