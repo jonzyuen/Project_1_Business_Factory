@@ -1,16 +1,74 @@
 // let searchBar = $("")
 
+let createDiv = document.createElement('div');
+
+let gameCard = document.getElementById('game-grid-container');
+
+
+let getGenre = function() { 
+    document.querySelector('#genre-container').addEventListener('click', function(event) {
+        console.log(event.target.classList);
+        event.preventDefault();
+
+        if (event.target.matches('button')) {
+            // alert(event.target.id);
+
+            // fetch with dynamic genre in query
+            getGamesByGenre(event.target.id)
+                .then(res => res.json())
+                .then(data => console.log(data));
+        }
+    });
+};
+
+function gameCardEl () {
+
+    //POSSIBLE VAR + RETURN THAT READ EASE
+    let divCell = document.createElement('div');
+    divCell.setAttribute('class', 'cell large-2 medium-4 small-6');
+    gameCard.appendChild(divCell);
+
+    let divCard = document.createElement('div');
+    divCard.setAttribute('class', 'card');
+    divCell.appendChild(divCard);
+
+    let cardSection = document.createElement('div');
+    cardSection.setAttribute('class', 'card-section');
+    divCard.appendChild(cardSection);
+
+    return divCard;
+}
+// start of for loop to make divs for length of results/genre
+// for (let i=0; i<data.results; i++) {}
+
+function genericFunction() {
+    fetch(
+        // `https://api.rawg.io/api/games?key=c7ec26c3e2bb4ca79a5a70710956f2f8&genres=action`
+    ).then(function(response) {
+        return response.json();
+    })
+    .then(function(response) {
+        console.log(response.results[0]);
+        let divCard = gameCardEl();
+        let gameCover = document.createElement('img')
+        gameCover.setAttribute('src', response.results[0].background_image);
+        let gameTitle = document.createElement('h5');
+        gameTitle.textContent = response.results[0].name;
+        divCard.prepend(gameCover);
+        divCard.appendChild(gameTitle)
+    });
+};
+
 const getAllGenres = () => {
     return fetch(`https://api.rawg.io/api/genres?key=c7ec26c3e2bb4ca79a5a70710956f2f8`)
         .then(response => response.json())
         .then(data => data.results);
-}
-
+    }
+console.log(getAllGenres())
 
 const getGamesByGenre = (genre) => {
-    return fetch(`https://api.rawg.io/api/games?key=c7ec26c3e2bb4ca79a5a70710956f2f8&genre=${genre}`)
-        .then(response => response.json())
-        .then(data => data.results);
+    return fetch(`https://api.rawg.io/api/games?key=c7ec26c3e2bb4ca79a5a70710956f2f8&genres=${genre}`)
+        
 }
 
 
@@ -91,10 +149,23 @@ getAllGenres().then((genres) => {
 })
 
 //Example to get all games by genre
-getGamesByGenre("Action").then((results) => {
-    //Do stuff with results of query. Results holds array of all games for a certain genre
-    console.log(results)
-})
+// getGamesByGenre("Action").then((results) => {
+//     //Do stuff with results of query. Results holds array of all games for a certain genre
+//     console.log(results)
+// })
+
+
+
+
+getGenre();
+genericFunction();
+
+
+
+// $('#games-cards-container').hide();
+$('.game-page').hide();
+
+
 
 let searchForm = document.querySelector('#search-form');
 
