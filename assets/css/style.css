@@ -77,4 +77,6 @@ iframe {
 
 footer {
   color: white;
+  text-align: right;
+  padding-right: 2vw;
 }
