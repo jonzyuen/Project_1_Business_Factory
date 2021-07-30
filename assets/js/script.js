@@ -91,6 +91,7 @@ const getVideoByGuid = (videoUrl) => {
 }
 
 
+console.log(getGamesByGenre('action'));
 
 const getVideoClickListener = (e) => {
     const videoPlayer = document.getElementById('video-player')
@@ -119,7 +120,26 @@ const getAllGamesByGenreListener = (e, genre) => {
         document.querySelector('#results-container').classList.add('hide')
         document.querySelector('#genre-container').classList.add('hide')
         for (let i = 0; i < results.length; i++) {
-            createGameCard(results[i], document.getElementById('game-grid-container'))
+            createGameCard(results[i], document.getElementById('game-grid-container'), function(event, slug) {
+                console.log(slug);
+                console.log(results[i]);
+                
+                // hide other 'pages'
+                // show game page
+                document.getElementById('game-page-container').classList.remove('hide');
+                document.getElementById('games-cards-container').classList.add('hide')
+
+                let header = document.createElement('h2');
+                header.textContent = results[i].name;
+                document.getElementById('game-page-container').appendChild(header);
+
+                let img = document.createElement('img');
+                img.setAttribute('src', results[i].background_image);
+                img.setAttribute('alt', results[i].name);
+                document.getElementById('game-page-container').appendChild(img);
+
+                // add content for game page
+            })
         }
     })
 }
@@ -159,6 +179,7 @@ document.getElementById('back-btn').addEventListener('click', () => {
     searchForm.classList.remove('hide')
     document.querySelector('.game-video').classList.add('hide')
     document.querySelector('#results-container').classList.remove('hide')    
+    document.querySelector('#game-page-container').classList.add('hide')
     const videoPlayer = document.getElementById('video-player')
     videoPlayer.src = ''
 })
@@ -189,7 +210,7 @@ getAllGenres().then((genres) => {
 
 
 // $('#games-cards-container').hide();
-$('.game-page').hide();
+// $('.game-page').hide();
 
 
 
