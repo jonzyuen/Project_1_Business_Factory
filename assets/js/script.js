@@ -59,6 +59,9 @@
 //     });
 // };
 
+let searchForm = document.querySelector('#search-form');
+
+
 const getAllGenres = () => {
     return fetch(`https://api.rawg.io/api/genres?key=c7ec26c3e2bb4ca79a5a70710956f2f8`)
         .then(response => response.json())
@@ -92,6 +95,13 @@ const getVideoByGuid = (videoUrl) => {
 
 
 
+const backBtnEventListenr = () => {
+    searchForm.classList.remove('hide')
+    document.getElementById('game-grid-container').innerHTML = ''
+    document.querySelector('#genre-container').classList.remove('hide')    
+    document.getElementById('back-btn-game-container').classList.add('hide')
+}
+
 const getVideoClickListener = (e) => {
     const videoPlayer = document.getElementById('video-player')
     getDetailedGameDataByGuid(e.currentTarget.dataset.guid).then((results) => {
@@ -114,7 +124,9 @@ const getVideoClickListener = (e) => {
 const getAllGamesByGenreListener = (e, genre) => {
     const searchForm = document.querySelector('#search-form')
     getGamesByGenre(genre).then((results) => {
-        console.log(results)
+        document.getElementById('back-btn-game-container').classList.remove('hide')
+        document.getElementById('back-btn-game-container').addEventListener('click', backBtnEventListenr)
+
         searchForm.classList.add('hide')
         document.querySelector('#results-container').classList.add('hide')
         document.querySelector('#genre-container').classList.add('hide')
@@ -152,7 +164,6 @@ const createGameCard = (data, container, clickListener) => {
     container.appendChild(outerDiv)
 }   
 
-let searchForm = document.querySelector('#search-form');
 
 
 document.getElementById('back-btn').addEventListener('click', () => {
@@ -161,13 +172,12 @@ document.getElementById('back-btn').addEventListener('click', () => {
     document.querySelector('#results-container').classList.remove('hide')    
     const videoPlayer = document.getElementById('video-player')
     videoPlayer.src = ''
+    document.querySelector('#results-container').innerHTML = ''    
+
 })
 
-document.getElementById('back-btn-game-container').addEventListener('click', () => {
-    searchForm.classList.remove('hide')
-    document.getElementById('game-grid-container').innerHTML = ''
-    document.querySelector('#genre-container').classList.remove('hide')    
-})
+
+
 
 getAllGenres().then((genres) => {
     // genres is array of all genres
@@ -196,9 +206,11 @@ $('.game-page').hide();
 
 searchForm.addEventListener('submit', function(e) {
     e.preventDefault()
+    console.log('here')
     let gameName = document.getElementById('text-box').value
     getGameDataByGameName(gameName) 
         .then((results) => {
+        document.querySelector('#results-container').classList.remove('hide')
         for (let i = 0; i < results.length; i++ ) {
             createGameCard(results[i], document.querySelector('#results-container'), getVideoClickListener )
         }
