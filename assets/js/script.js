@@ -247,7 +247,7 @@ getAllGenres()
 
 
 // // get favorites from local storage or empty array
-// var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 // // add class 'fav' to each favorite
 // favorites.forEach(function(fav) {
 //   document.getElementById(fav).className = 'fav';
@@ -272,4 +272,47 @@ getAllGenres()
 //   localStorage.setItem('favorites', JSON.stringify(favorites));
 // });
 
-// local storage stores strings so we use JSON to stringify for storage and parse to get out of storage
+let favoriteGames = [];
+function renderFavorites(favorites) {
+    $('#favorites-list').empty();
+
+    for (let i=0; i<favorites.length; i++) {
+        let favGame = $('<p>');
+        favGame.text(favorites[i]);
+
+        let removeGame = $('<button>');
+        removeGame.attr('data-favorite', i);
+        removeGame.addClass('minus');
+        removeGame.text('-');
+
+        favGame = favGame.appendChild(removeGame);
+
+        $('#favorites-list').appendChild(favGame);
+    }
+};
+
+$('#favorites-Btn').on('click', function(event) {
+    event.preventDefault();
+
+    let listItem = $()
+    .val()
+    .trim();
+
+    list.push(listItem);
+    renderFavorites(favorites);
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+});
+
+$(document).on('click', 'minus', function() {
+    let fav_Number = $(this).attr('data-favorite')
+
+    list.splice(fav_Number, 1);
+
+    renderFavorites(favorites);
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+})
+
+renderFavorites(favorites);
+
