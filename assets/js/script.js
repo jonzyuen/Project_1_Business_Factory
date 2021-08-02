@@ -63,59 +63,59 @@ let searchForm = document.querySelector('#search-form');
 
 
 const getAllGenres = () => {
-    return fetch(`https://api.rawg.io/api/genres?key=c7ec26c3e2bb4ca79a5a70710956f2f8`)
-        .then(response => response.json())
-        .then(data => data.results);
-    }
+  return fetch(`https://api.rawg.io/api/genres?key=c7ec26c3e2bb4ca79a5a70710956f2f8`)
+    .then(response => response.json())
+    .then(data => data.results);
+}
 
 const getGamesByGenre = (genre) => {
-    return fetch(`https://api.rawg.io/api/games?key=c7ec26c3e2bb4ca79a5a70710956f2f8&genres=${genre}`)
-        .then(response => response.json())
-        .then(data => data.results);        
+  return fetch(`https://api.rawg.io/api/games?key=c7ec26c3e2bb4ca79a5a70710956f2f8&genres=${genre}`)
+    .then(response => response.json())
+    .then(data => data.results);
 }
 
 
 const getGameDataByGameName = (game) => {
-    return fetch(`https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/search/?api_key=85b938020fcf46bb6d3e1014180e6954cd8c1a1c&format=json&query=${game}`)
-        .then(res => res.json())
-        .then(data => data.results);
+  return fetch(`https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/search/?api_key=85b938020fcf46bb6d3e1014180e6954cd8c1a1c&format=json&query=${game}`)
+    .then(res => res.json())
+    .then(data => data.results);
 }
 
 const getDetailedGameDataByGuid = (guid) => {
-    return fetch(`https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/game/${guid}/?api_key=85b938020fcf46bb6d3e1014180e6954cd8c1a1c&format=json`)
-        .then(res => res.json())
-        .then(data => data.results);
+  return fetch(`https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/game/${guid}/?api_key=85b938020fcf46bb6d3e1014180e6954cd8c1a1c&format=json`)
+    .then(res => res.json())
+    .then(data => data.results);
 }
 
 const getVideoByGuid = (videoUrl) => {
-    return fetch(`https://cors-anywhere.herokuapp.com/${videoUrl}?api_key=85b938020fcf46bb6d3e1014180e6954cd8c1a1c&format=json`)
-        .then(res => res.json())
-        .then(data => data.results);
+  return fetch(`https://cors-anywhere.herokuapp.com/${videoUrl}?api_key=85b938020fcf46bb6d3e1014180e6954cd8c1a1c&format=json`)
+    .then(res => res.json())
+    .then(data => data.results)
 }
 
 
 console.log(getGamesByGenre('action'));
 
 const backBtnEventListenr = () => {
-    searchForm.classList.remove('hide')
-    document.getElementById('game-grid-container').innerHTML = ''
-    document.querySelector('#genre-container').classList.remove('hide')    
-    document.getElementById('back-btn-game-container').classList.add('hide')
+  searchForm.classList.remove('hide')
+  document.getElementById('game-grid-container').innerHTML = ''
+  document.querySelector('#genre-container').classList.remove('hide')
+  document.getElementById('back-btn-game-container').classList.add('hide')
 }
 
 const getVideoClickListener = (e) => {
-    const videoPlayer = document.getElementById('video-player')
-    getDetailedGameDataByGuid(e.currentTarget.dataset.guid).then((results) => {
-        const videoUrl = results.videos[0].api_detail_url
-        getVideoByGuid(videoUrl).then((results) => {
-            const videoPlayerUrl = results.embed_player
-            const searchForm = document.querySelector('#search-form')
-            videoPlayer.src = videoPlayerUrl
-            searchForm.classList.add('hide')
-            document.querySelector('.game-video').classList.remove('hide')
-            document.querySelector('#results-container').classList.add('hide')
-        })
+  const videoPlayer = document.getElementById('video-player')
+  getDetailedGameDataByGuid(e.currentTarget.dataset.guid).then((results) => {
+    const videoUrl = results.videos[0].api_detail_url
+    getVideoByGuid(videoUrl).then((results) => {
+      const videoPlayerUrl = results.embed_player
+      const searchForm = document.querySelector('#search-form')
+      videoPlayer.src = videoPlayerUrl
+      searchForm.classList.add('hide')
+      document.querySelector('.game-video').classList.remove('hide')
+      document.querySelector('#results-container').classList.add('hide')
     })
+  }).then(console.log(e.currentTarget.dataset.guid))
 }
 
 
@@ -123,77 +123,77 @@ const getVideoClickListener = (e) => {
 //2 Figure out how to hide all the stuff on the page
 
 const getAllGamesByGenreListener = (e, genre) => {
-    const searchForm = document.querySelector('#search-form')
-    getGamesByGenre(genre).then((results) => {
-        document.getElementById('back-btn-game-container').classList.remove('hide')
-        document.getElementById('back-btn-game-container').addEventListener('click', backBtnEventListenr)
+  const searchForm = document.querySelector('#search-form')
+  getGamesByGenre(genre).then((results) => {
+    document.getElementById('back-btn-game-container').classList.remove('hide')
+    document.getElementById('back-btn-game-container').addEventListener('click', backBtnEventListenr)
 
-        searchForm.classList.add('hide')
-        document.querySelector('#results-container').classList.add('hide')
-        document.querySelector('#genre-container').classList.add('hide')
-        for (let i = 0; i < results.length; i++) {
-            createGameCard(results[i], document.getElementById('game-grid-container'), function(event, slug) {
-                console.log(slug);
-                console.log(results[i]);
-                
-                // hide other 'pages'
-                // show game page
-                document.getElementById('game-page-container').classList.remove('hide');
-                document.getElementById('games-cards-container').classList.add('hide')
+    searchForm.classList.add('hide')
+    document.querySelector('#results-container').classList.add('hide')
+    document.querySelector('#genre-container').classList.add('hide')
+    for (let i = 0; i < results.length; i++) {
+      createGameCard(results[i], document.getElementById('game-grid-container'), function (event, slug) {
+        console.log(slug);
+        console.log(results[i]);
 
-                let header = document.createElement('h2');
-                header.textContent = results[i].name;
-                document.getElementById('game-page-container').appendChild(header);
+        // hide other 'pages'
+        // show game page
+        document.getElementById('game-page-container').classList.remove('hide');
+        document.getElementById('games-cards-container').classList.add('hide')
 
-                let img = document.createElement('img');
-                img.setAttribute('src', results[i].background_image);
-                img.setAttribute('alt', results[i].name);
-                document.getElementById('game-page-container').appendChild(img);
+        let header = document.createElement('h2');
+        header.textContent = results[i].name;
+        document.getElementById('game-page-container').appendChild(header);
 
-                // add content for game page
-            })
-        }
-    })
+        let img = document.createElement('img');
+        img.setAttribute('src', results[i].background_image);
+        img.setAttribute('alt', results[i].name);
+        document.getElementById('game-page-container').appendChild(img);
+
+        // add content for game page
+      })
+    }
+  })
 }
 
 
 // Pass game data (one of the results) and return card
 const createGameCard = (data, container, clickListener) => {
-    const outerDiv = document.createElement('div')
-    outerDiv.classList.add('cell', 'large-2', 'medium-4', 'small-6')
-    outerDiv.dataset.guid = data.guid
-    // outerDiv.addEventListener('click', clickListener)
-    outerDiv.addEventListener('click', (e) => clickListener(e, data.slug) )
+  const outerDiv = document.createElement('div')
+  outerDiv.classList.add('cell', 'large-2', 'medium-4', 'small-6')
+  outerDiv.dataset.guid = data.guid
+  // outerDiv.addEventListener('click', clickListener)
+  outerDiv.addEventListener('click', (e) => clickListener(e, data.slug))
 
-    const cardDiv = document.createElement('div')
-    cardDiv.classList.add('card')
-    const gameImg = document.createElement('img')
-    gameImg.src = data.image?.icon_url || data.image_background || data.background_image
-    gameImg.alt = "No Icon"
+  const cardDiv = document.createElement('div')
+  cardDiv.classList.add('card')
+  const gameImg = document.createElement('img')
+  gameImg.src = data.image?.icon_url || data.image_background || data.background_image
+  gameImg.alt = "No Icon"
 
-    const cardSection = document.createElement('div')
-    cardSection.classList.add('card-section')
-    const gameName = document.createElement('h5')
-    gameName.textContent = data.name
+  const cardSection = document.createElement('div')
+  cardSection.classList.add('card-section')
+  const gameName = document.createElement('h5')
+  gameName.textContent = data.name
 
-    outerDiv.appendChild(cardDiv)
-    cardDiv.appendChild(gameImg)
-    cardDiv.appendChild(cardSection)
-    cardSection.appendChild(gameName)
+  outerDiv.appendChild(cardDiv)
+  cardDiv.appendChild(gameImg)
+  cardDiv.appendChild(cardSection)
+  cardSection.appendChild(gameName)
 
-    container.appendChild(outerDiv)
-}   
+  container.appendChild(outerDiv)
+}
 
 
 
 document.getElementById('back-btn').addEventListener('click', () => {
-    searchForm.classList.remove('hide')
-    document.querySelector('.game-video').classList.add('hide')
-    document.querySelector('#results-container').classList.remove('hide')    
-    document.querySelector('#game-page-container').classList.add('hide')
-    const videoPlayer = document.getElementById('video-player')
-    videoPlayer.src = ''
-    document.querySelector('#results-container').innerHTML = ''    
+  searchForm.classList.remove('hide')
+  document.querySelector('.game-video').classList.add('hide')
+  document.querySelector('#results-container').classList.remove('hide')
+  document.querySelector('#game-page-container').classList.add('hide')
+  const videoPlayer = document.getElementById('video-player')
+  videoPlayer.src = ''
+  document.querySelector('#results-container').innerHTML = ''
 
 })
 
@@ -201,8 +201,8 @@ document.getElementById('back-btn').addEventListener('click', () => {
 
 
 getAllGenres().then((genres) => {
-    // genres is array of all genres
-    console.log(genres)
+  // genres is array of all genres
+  console.log(genres)
 })
 
 //Example to get all games by genre
@@ -225,23 +225,94 @@ getAllGenres().then((genres) => {
 
 
 
-searchForm.addEventListener('submit', function(e) {
-    e.preventDefault()
-    console.log('here')
-    let gameName = document.getElementById('text-box').value
-    getGameDataByGameName(gameName) 
-        .then((results) => {
-        document.querySelector('#results-container').classList.remove('hide')
-        for (let i = 0; i < results.length; i++ ) {
-            createGameCard(results[i], document.querySelector('#results-container'), getVideoClickListener )
-        }
+searchForm.addEventListener('submit', function (e) {
+  e.preventDefault()
+  console.log('here')
+  let gameName = document.getElementById('text-box').value
+  getGameDataByGameName(gameName)
+    .then((results) => {
+      document.querySelector('#results-container').classList.remove('hide')
+      for (let i = 0; i < results.length; i++) {
+        createGameCard(results[i], document.querySelector('#results-container'), getVideoClickListener)
+      }
     })
 });
 
-getAllGenres() 
-    .then((results) => {
-        for (let i = 0; i < results.length; i++ ) {
-        createGameCard(results[i], document.getElementById('genre-container'), getAllGamesByGenreListener)
-        }
-    })
+getAllGenres()
+  .then((results) => {
+    for (let i = 0; i < results.length; i++) {
+      createGameCard(results[i], document.getElementById('genre-container'), getAllGamesByGenreListener)
+    }
+  })
+
+
+// // get favorites from local storage or empty array
+var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+// // add class 'fav' to each favorite
+// favorites.forEach(function(fav) {
+//   document.getElementById(fav).className = 'fav';
+// });
+// // register click event listener
+// document.querySelector('#favorites-Btn').addEventListener('click', function(e) {
+//   let id = e.target.dataset.guid,
+//       item = e.target,
+//       index = favorites.indexOf(id);
+//   // return if target doesn't have an id (shouldn't happen)
+//   if (!id) return;
+//   // item is not favorite
+//   if (index == -1) {
+//     favorites.push(id);
+//     item.className = 'fav';
+//   // item is already favorite
+//   } else {
+//     favorites.splice(index, 1);
+//     item.className = '';
+//   }
+//   // store array in local storage
+//   localStorage.setItem('favorites', JSON.stringify(favorites));
+// });
+
+let favoriteGames = [];
+function renderFavorites(favorites) {
+    $('#favorites-list').empty();
+
+    for (let i=0; i<favorites.length; i++) {
+        let favGame = $('<p>');
+        favGame.text(favorites[i]);
+
+        let removeGame = $('<button>');
+        removeGame.attr('data-favorite', i);
+        removeGame.addClass('minus');
+        removeGame.text('-');
+
+        favGame = favGame.appendChild(removeGame);
+
+        $('#favorites-list').appendChild(favGame);
+    }
+};
+
+$('#favorites-Btn').on('click', function(event) {
+    event.preventDefault();
+
+    let listItem = $()
+    .val()
+    .trim();
+
+    list.push(listItem);
+    renderFavorites(favorites);
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+});
+
+$(document).on('click', 'minus', function() {
+    let fav_Number = $(this).attr('data-favorite')
+
+    list.splice(fav_Number, 1);
+
+    renderFavorites(favorites);
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+})
+
+renderFavorites(favorites);
 

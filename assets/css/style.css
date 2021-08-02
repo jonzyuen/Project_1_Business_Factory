@@ -27,6 +27,7 @@ header {
   align-items: center;
 
 }
+
 button {
     border-radius: 5px;
     cursor: pointer;
@@ -95,15 +96,15 @@ iframe {
 
 #back-Btn {
   text-decoration: none;
-  padding-top: 20px;
+  padding-top: 1vh;
 }
 #back-Btn a {
   color: white;
 }
 
 #favorites-Btn {
-  padding-top: 20px;
-  text-decoration: underline;
+  padding-top: 1vh;
+  text-decoration: none;
 }
 #favorites-Btn a {
   color: white;
